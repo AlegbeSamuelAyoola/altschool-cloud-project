@@ -1,0 +1,1 @@
+0 0 */1 * * bash /home/vagrant/logs/ram_log.sh

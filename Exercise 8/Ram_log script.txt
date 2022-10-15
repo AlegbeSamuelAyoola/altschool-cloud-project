@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+
+# log file path
+LOGFILE=/home/vagrant/logs/ram.log
+
+# Email recepient
+EMAIL="alegbeayoola@gmail.com"
+
+# Format date
+SENDTIME=$(date +%H%M)
+
+# Create log file
+function createLog() {
+        if test -f $LOGFILE; then
+                rm -rf $LOGFILE
+        else
+                touch $LOGFILE
+                date >> $LOGFILE
+                free -h >> $LOGFILE
+        fi
+}
+
+if [[ $SENDTIME == 0000 ]]; then
+        createLog
+        echo "Hey Support, Attached below is the memory log for today" | mail -s "RAM USAGE" -A $LOGFILE $EMAIL
+fi
+
